@@ -1,0 +1,21 @@
+# Use a lightweight Python base image
+FROM python:3.10-slim-buster
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements file and install dependencies
+COPY src/ai-backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application code
+COPY src/ai-backend/app /app/app
+
+# Expose the port FastAPI runs on
+EXPOSE 8000
+
+# Command to run the application
+# Use gunicorn with uvicorn workers for production (more robust)
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# For production, consider:
+# CMD ["gunicorn", "app.main:app", "--workers", "4", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]

@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VersoriumX IPFS Metadata Schema",
+  "description": "Schema for project-wide metadata stored on IPFS via Pinata.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A human-readable name for the project or data."
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of the project or data."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "description": "Semantic version of the project/metadata."
+    },
+    "project_status": {
+      "type": "string",
+      "enum": ["alpha", "beta", "stable", "deprecated"],
+      "description": "Current development status of the project."
+    },
+    "contact": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email or ENS name."
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "website": { "type": "string", "format": "uri" },
+        "github": { "type": "string", "format": "uri" },
+        "documentation": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "A list of relevant keywords."
+    },
+    "associated_contracts": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9]+$": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "symbol": { "type": "string" },
+            "description": { "type": "string" },
+            "network_deployments": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-zA-Z0-9]+$": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" }
+              },
+              "additionalProperties": false,
+              "description": "Map of network names to deployed contract addresses."
+            }
+          },
+          "required": ["name"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "description": "Details of smart contracts associated with the project."
+    },
+    "ipfs_assets": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9]+$": { "type": "string", "pattern": "^Qm[1-9A-Za-z]{44}$" }
+      },
+      "additionalProperties": true,
+      "description": "Map of asset names to their IPFS CIDs."
+    }
+  },
+  "required": ["name", "description", "version", "project_status", "keywords"],
+  "additionalProperties": true
+}

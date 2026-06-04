@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VersoriumX Multi-Component Project Configuration",
+  "description": "Centralized configuration for the VersoriumX monorepo components.",
+  "projectName": "VersoriumX",
+  "version": "0.1.0",
+  "rootEnsName": "versoriumx.eth",
+  "projectIpfsGateway": "https://versoriumx.mypinata.cloud/ipfs/",
+
+  "networks": {
+    "ethereum": {
+      "mainnet": {
+        "chainId": 1,
+        "explorerUrl": "https://etherscan.io/",
+        "ensUniversalResolver": "0x22c2f8f6b0f02C264D0C9b16B2720B2F2E495D31"
+      },
+      "sepolia": {
+        "chainId": 11155111,
+        "explorerUrl": "https://sepolia.etherscan.io/",
+        "ensUniversalResolver": "0x403dE2b56e6d1A8660B9582d90D6D0aE984D765a"
+      },
+      "localhost": {
+        "chainId": 31337,
+        "explorerUrl": "http://localhost:8545/explorer",
+        "ensUniversalResolver": "0x0000000000000000000000000000000000000000"
+      }
+    }
+  },
+
+  "components": {
+    "frontend": {
+      "name": "VersoriumX dApp",
+      "walletConnect": {
+        "projectId": "<YOUR_WALLET_CONNECT_CLOUD_PROJECT_ID>",
+        "metadata": {
+          "name": "VersoriumX",
+          "description": "AI-driven Web3 platform by VersoriumX",
+          "url": "https://versoriumx.eth",
+          "icons": ["https://versoriumx.eth/logo.png"]
+        }
+      },
+      "contractAddresses": {
+        "sepolia": { /* ... */ },
+        "mainnet": { /* ... */ },
+        "localhost": { /* ... */ }
+      }
+    },
+    "contracts": {
+      "name": "VersoriumX Smart Contracts",
+      "vyperCompilerVersion": "0.3.10",
+      "defaultNetwork": "sepolia",
+      "contractSourceDir": "contracts/",
+      "artifactOutputDir": "artifacts/",
+      "deployerEnsName": "deployer.versoriumx.eth",
+      "testGasLimit": 60000000
+    },
+    "aiBackend": {
+      "name": "VersoriumX AI Search Engine Backend",
+      "vectorDbProvider": "weaviate",
+      "modelName": "sentence-transformers/all-MiniLM-L6-v2",
+      "indexedDataSources": [
+        "ethereum_sepolia_transactions",
+        "ethereum_mainnet_contract_events",
+        "versoriumx_ipfs_metadata"
+      ],
+      "dataRefreshIntervalHrs": 24
+    },
+    "ipfsTools": {
+      "name": "VersoriumX IPFS Uploader",
+      "pinataApiBaseUrl": "https://api.pinata.cloud/pinning/",
+      "uploadTargets": [
+        {"name": "frontend_build", "path": "../build/frontend/", "options": {"wrapWithDirectory": true}},
+        {"name": "project_data_assets", "path": "../data/assets/", "options": {"wrapWithDirectory": true}},
+        {"name": "project_metadata", "path": "../data/metadata.json", "options": {"wrapWithDirectory": false}}
+      ],
+      "uploadManifestPath": "../data/ipfs-manifest.json",
+      "maxUploadRetries": 3
+    }
+  },
+
+  "build": {
+    "outputRoot": "build/",
+    "frontendDir": "frontend/",
+    "contractArtifactsDir": "contracts/artifacts/",
+    "aiBackendContainerName": "versoriumx-ai-backend"
+  },
+
+  "mcpServers": {
+    "local": {
+      "description": "Local development environment.",
+      "frontend": {
+        "baseUrl": "http://localhost:5173",
+        "aiBackendApiUrl": "http://localhost:8000/ai"
+      },
+      "aiBackend": {
+        "apiUrl": "http://localhost:8000"
+      },
+      "contracts": {
+        "targetNetwork": "localhost"
+      }
+    },
+    "staging": {
+      "description": "Staging environment for testing before production.",
+      "githubEnv": "staging",
+      "frontend": {
+        "baseUrl": "https://staging.versoriumx.eth.link",
+        "ipfsCid": "Qm...",
+        "aiBackendApiUrl": "https://api.staging.versoriumx.eth/ai"
+      },
+      "aiBackend": {
+        "apiUrl": "https://api.staging.versoriumx.eth",
+        "dockerImage": "ghcr.io/versoriumx/ai-backend:staging"
+      },
+      "contracts": {
+        "targetNetwork": "sepolia",
+        "deployedAddressesFile": "config/deployed-addresses-sepolia.json"
+      }
+    },
+    "production": {
+      "description": "Production environment.",
+      "githubEnv": "production",
+      "frontend": {
+        "baseUrl": "https://dapp.versoriumx.eth.link",
+        "ipfsCid": "Qm...",
+        "aiBackendApiUrl": "https://api.versoriumx.eth/ai"
+      },
+      "aiBackend": {
+        "apiUrl": "https://api.versoriumx.eth",
+        "dockerImage": "ghcr.io/versoriumx/ai-backend:latest"
+      },
+      "contracts": {
+        "targetNetwork": "mainnet",
+        "deployedAddressesFile": "config/deployed-addresses-mainnet.json"
+      }
+    }
+  }
+}

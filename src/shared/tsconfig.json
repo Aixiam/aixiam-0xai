@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "jsx": "react",
+    "jsx": "react",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ESNext", "DOM"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "composite": true, // Enable project references
+    "baseUrl": ".",
+    "paths": {
+      "@versoriumx/*": ["src/shared/*/src"] // Example path mapping for shared packages
+    }
+  },
+  "references": [
+    { "path": "./src/frontend/tsconfig.json" },
+    { "path": "./src/ipfs-tools/tsconfig.json" },
+    { "path": "./src/shared/ipfs-client/tsconfig.json" }
+  ]
+}

@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom colors for VersoriumX */
+@layer base {
+  :root {
+    --color-versoriumx-blue: #007bff; /* A vibrant blue */
+    --color-versoriumx-light-blue: #66b3ff; /* Lighter shade for hover/highlight */
+    --color-versoriumx-dark-gray: #1a202c; /* Darker background */
+    --color-versoriumx-text-light: #e2e8f0; /* Light text */
+  }
+}
+
+/* Custom Tailwind utility classes */
+@layer utilities {
+  .bg-versoriumx-blue {
+    background-color: var(--color-versoriumx-blue);
+  }
+  .hover\:bg-versoriumx-light-blue:hover {
+    background-color: var(--color-versoriumx-light-blue);
+  }
+  .text-versoriumx-blue {
+    color: var(--color-versoriumx-blue);
+  }
+  .text-versoriumx-light-blue {
+    color: var(--color-versoriumx-light-blue);
+  }
+  .animate-pulse-color {
+    animation: pulse-color 4s infinite ease-in-out;
+  }
+}
+
+/* Keyframes for the custom animation */
+@keyframes pulse-color {
+  0%, 100% {
+    color: var(--color-versoriumx-blue);
+    text-shadow: 0 0 5px var(--color-versoriumx-blue), 0 0 10px var(--color-versoriumx-blue);
+  }
+  50% {
+    color: var(--color-versoriumx-light-blue);
+    text-shadow: 0 0 10px var(--color-versoriumx-light-blue), 0 0 20px var(--color-versoriumx-light-blue);
+  }
+}
+
+/* Basic body styling */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

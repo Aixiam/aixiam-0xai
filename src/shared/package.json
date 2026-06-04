@@ -1,7 +1,7 @@
 {
-  "name": "versoriumx-project",
+  "name": "versoriumx-0xai-ecosystem",
   "version": "0.1.0",
-  "description": "VersoriumX Monorepo Root Package for AI, Web3, and IPFS Integration.",
+  "description": "VersoriumX Monorepo Root Package",
   "private": true,
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -16,54 +16,41 @@
   "type": "module",
   "scripts": {
     "dev:frontend": "pnpm --filter frontend dev",
-    "dev:ai-backend": "cd src/ai-backend && source .venv/bin/activate && uvicorn app.main:app --reload --port 8000",
+    "dev:ai-backend": "pnpm --filter ai-backend start",
     "dev:hardhat-node": "pnpm --filter contracts node",
     "build:all": "pnpm run build --recursive",
     "test:all": "pnpm run test --recursive",
     "lint:all": "pnpm run lint --recursive",
     "format:all": "pnpm run format --recursive",
     "clean:all": "pnpm run clean --recursive",
-    "audit:fix": "pnpm audit fix",
-    "build:frontend:gh-pages": "NODE_ENV=production VITE_DEPLOY_TO_GH_PAGES=true pnpm --filter frontend build",
-    "deploy:gh-pages": "pnpm run build:frontend:gh-pages && pnpm exec gh-pages -d build/frontend"
+    "audit:fix": "pnpm audit fix"
   },
   "pnpm": {
     "overrides": {
-      "uglify-js": "3.17.4",
-      "axios": ">=1.12.0",
-      "cookie": ">=0.7.0",
-      "tmp": ">=0.2.4",
-      "hardhat": "^2.19.0",
-      "react-query": "npm:@tanstack/react-query@^4.0.0",
-      "react": "^18.2.0"
-    },
-    "ignoredBuiltDependencies": [
-      "esbuild",
-      "keccak",
-      "secp256k1"
-    ]
+      "uglify-js": "3.17.4"
+    }
   },
   "dependencies": {
     "ankr-react": "^0.3.0",
     "ethers": "^6.x.x"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
-    "@types/jest": "^29.x.x",
+    "typescript": "^5.x.x",
     "@types/node": "^20.x.x",
     "dotenv": "^16.x.x",
     "eslint": "^8.x.x",
-    "gh-pages": "^6.1.1",
-    "hardhat": "^3.0.6",
-    "hardhat-vyper": "^1.0.1",
-    "jest": "^29.x.x",
     "prettier": "^3.x.x",
+    "jest": "^29.x.x",
     "ts-jest": "^29.x.x",
-    "typescript": "^5.x.x"
+    "@types/jest": "^29.x.x",
+    "hardhat": "^2.x.x",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat-vyper": "^0.1.0"
   },
   "workspaces": [
     "src/frontend",
     "src/contracts",
+    "src/ai-backend",
     "src/ipfs-tools",
     "src/shared/*"
   ]

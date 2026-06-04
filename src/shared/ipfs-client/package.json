@@ -1,0 +1,49 @@
+{
+  "name": "@versoriumx/ipfs-client",
+  "version": "1.0.0",
+  "description": "VersoriumX custom IPFS client utilities for Pinata interaction.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b",
+    "build:watch": "tsc -b --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "ipfs",
+    "pinata",
+    "web3",
+    "versoriumx"
+  ],
+  "author": "VersoriumX Team",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x.x",
+    "eslint": "^8.x.x",
+    "prettier": "^3.x.x",
+    "typescript": "^5.x.x"
+  },
+  "dependencies": {
+    "@pinata/sdk": "^2.1.0",
+    "axios": "^1.12.2",
+    "form-data": "^4.x.x"
+  }
+}

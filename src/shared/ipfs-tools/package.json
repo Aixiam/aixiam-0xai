@@ -1,0 +1,27 @@
+{
+  "name": "ipfs-tools",
+  "version": "0.0.0",
+  "description": "VersoriumX tools for uploading and managing content on IPFS via Pinata.",
+  "private": true,
+  "scripts": {
+     "build": "tsc -b",
+    "upload-assets": "ts-node scripts/upload-assets.ts",
+    "upload-frontend-build": "ts-node scripts/upload-assets.ts frontend_build",
+    "upload-data-assets": "ts-node scripts/upload-assets.ts data_assets",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@versoriumx/ipfs-client": "workspace:^1.0.0",
+    "axios": "^1.12.2",
+    "dotenv": "^16.x.x"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x.x",
+    "eslint": "^8.x.x",
+    "prettier": "^3.x.x",
+    "ts-node": "^10.x.x",
+    "typescript": "^5.x.x"
+  }
+}
