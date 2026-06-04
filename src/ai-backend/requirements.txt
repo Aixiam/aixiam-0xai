@@ -1,0 +1,12 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0.post1
+pydantic==1.10.13
+python-dotenv==1.0.0
+# For AI/Vector DB:
+# sentence-transformers==2.2.2
+# transformers==4.35.2
+# torch==2.1.1 # or tensorflow
+# faiss-cpu==1.7.4 # if using FAISS
+# weaviate-client==3.21.0 # if using Weaviate
+# pinecone-client==2.2.4 # if using Pinecone
+# (Uncomment and add specific versions as needed for your AI model and vector DB)

@@ -1,0 +1,38 @@
+{
+  "name": "contracts",
+  "version": "0.0.0",
+  "description": "VersoriumX Hardhat project for Vyper smart contracts.",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "build": "pnpm run compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy:localhost": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
+    "deploy:mainnet": "hardhat run scripts/deploy.ts --network mainnet",
+    "fund:versoriumx": "hardhat run scripts/fund_versoriumx.ts",
+    "verify": "hardhat verify",
+    "clean": "hardhat clean",
+    "typechain": "hardhat typechain",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "hardhat": "^2.19.0",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomiclabs/hardhat-vyper": "^3.0.0",
+    "typescript": "^5.x.x",
+    "@types/node": "^20.x.x",
+    "@types/mocha": "^10.0.0",
+    "chai": "^4.x.x",
+    "mocha": "^10.x.x",
+    "dotenv": "^16.x.x",
+    "eslint": "^8.x.x",
+    "prettier": "^3.x.x",
+    "@types/chai": "^4.x.x",
+    "@typechain/ethers-v6": "^0.5.0",
+    "@typechain/hardhat": "^9.0.0",
+    "typechain": "^8.3.0"
+  }
+}

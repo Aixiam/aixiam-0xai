@@ -1,0 +1,42 @@
+{
+  "name": "VersoriumX Project Data",
+  "description": "Core metadata and configuration for the VersoriumX project, intended for IPFS pinning.",
+  "version": "0.1.0",
+  "project_status": "beta",
+  "contact": "info@versoriumx.eth",
+  "links": {
+    "website": "https://versoriumx.eth",
+    "github": "https://github.com/versoriumx/versoriumx-project",
+    "documentation": "https://versoriumx.eth/docs"
+  },
+  "keywords": [
+    "web3",
+    "ai",
+    "ipfs",
+    "ethereum",
+    "vyper",
+    "decentralized",
+    "search",
+    "compiler"
+  ],
+  "associated_contracts": {
+    "MyProjectContract": {
+      "name": "MyProjectContract",
+      "description": "Main project logic contract",
+      "network_deployments": {
+        "sepolia": "0x..."
+      }
+    },
+    "VersoriumXToken": {
+      "name": "VersoriumX Token",
+      "symbol": "VX",
+      "network_deployments": {
+        "mainnet": "0x..."
+      }
+    }
+  },
+  "ipfs_assets": {
+    "logo": "Qm...",
+    "documentation_cid": "Qm..."
+  }
+}
